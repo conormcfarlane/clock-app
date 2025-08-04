@@ -35,15 +35,15 @@ export default function Quote() {
   }
 
   return (
-    <section className="grid grid-cols-10">
+    <section className="bg-green-800 flex items-start">
       {quote && (
         <>
-          <p className="col-span-9">{quote.quote}</p>
-          <p className="row-start-2 col-span-9">{quote.author}</p>
-          <button
-            onClick={fetchQuote}
-            className="self-start justify-self-end  "
-          >
+          <div className="flex-1">
+            <blockquote>"{quote.quote}"</blockquote>
+            <cite className="font-semibold">{quote.author}</cite>
+          </div>
+
+          <button onClick={fetchQuote}>
             <img src={iconRefresh} alt="" />
           </button>
         </>
