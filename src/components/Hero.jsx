@@ -1,5 +1,8 @@
 import React from "react";
+import { getGreeting } from "../utils/timeHelper";
 
 export default function Hero() {
-  return <div>Hero</div>;
+  const currentHour = new Date().getHours();
+  const greeting = getGreeting(currentHour);
+  return <div>{greeting}{currentHour}</div>;
 }

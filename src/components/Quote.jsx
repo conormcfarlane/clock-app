@@ -12,12 +12,12 @@ export default function Quote() {
       setError(null);
       const response = await fetch("https://dummyjson.com/quotes/random");
       if (!response.ok) {
-        throw new Error(`HTTP is bad !! : ${response.status}`);
+        throw new Error(`HTTP Error : ${response.error}`);
       }
       const data = await response.json();
       setQuote(data);
     } catch (error) {
-      setError(error.message);
+      setError(error);
     } finally {
       setLoading(false);
     }
@@ -31,23 +31,21 @@ export default function Quote() {
     return <p>Loading...</p>;
   }
   if (error) {
-    return <p>ERROR ::: {error}</p>;
+    <p>{error}</p>;
   }
-
   return (
-    <section className="bg-green-800 flex items-start">
-      {quote && (
-        <>
-          <div className="flex-1">
-            <blockquote>"{quote.quote}"</blockquote>
-            <cite className="font-semibold">{quote.author}</cite>
-          </div>
-
-          <button onClick={fetchQuote}>
-            <img src={iconRefresh} alt="" />
-          </button>
-        </>
-      )}
+    <section className="bg-green-500 flex items-start justify-between">
+      <div className="w-9/10">
+        <p className="mb-3">"{quote.quote}"</p>
+        <p className="font-bold">{quote.author}</p>
+      </div>
+      <button onClick={fetchQuote}>
+        <img
+          src={iconRefresh}
+          alt="Refresh Button"
+          className="w-6 h-6 cursor-pointer"
+        />
+      </button>
     </section>
   );
 }
