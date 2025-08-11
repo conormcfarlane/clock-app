@@ -1,9 +1,11 @@
-export const getGreeting = (currentHour) => {
-    if(currentHour >= 5 && currentHour <= 12 ){
-        return "Good Morning";
-    }
-    if(currentHour >= 12 && currentHour <= 18){
-        return "Good Afternoon"
-    }
-    return "Good Night"
+export function greetingHelper(currentTime){
+    return currentTime >= 5 && currentTime < 12 
+    ? "GOOD MORNING" 
+    : currentTime >= 12 && currentTime < 18 
+    ? "GOOD AFTERNOON" 
+    : "GOOD NIGHT"
+}
+
+export function isDaytimeHelper(currentTime){
+    return currentTime >= 5 && currentTime < 18;
 }

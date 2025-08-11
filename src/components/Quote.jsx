@@ -7,19 +7,20 @@ export default function Quote() {
   const [error, setError] = useState(null);
 
   const fetchQuote = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
-      setError(null);
       const response = await fetch("https://dummyjson.com/quotes/random");
       if (!response.ok) {
-        throw new Error(`HTTP Error : ${response.error}`);
+        throw new Error(`HTTP error ! status: ${response.status}`);
       }
       const data = await response.json();
       setQuote(data);
-    } catch (error) {
-      setError(error);
+    } catch (err) {
+      setError(err);
     } finally {
       setLoading(false);
+      setError(null);
     }
   };
 
@@ -28,23 +29,19 @@ export default function Quote() {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Loading Quote ....</p>;
   }
   if (error) {
-    <p>{error}</p>;
+    return <p>{error}</p>;
   }
   return (
-    <section className="bg-green-500 flex items-start justify-between">
-      <div className="w-9/10">
+    <section className="bg-green-400 flex items-start">
+      <div>
         <p className="mb-3">"{quote.quote}"</p>
-        <p className="font-bold">{quote.author}</p>
+        <p className="font-semibold">{quote.author}</p>
       </div>
       <button onClick={fetchQuote}>
-        <img
-          src={iconRefresh}
-          alt="Refresh Button"
-          className="w-6 h-6 cursor-pointer"
-        />
+        <img src={iconRefresh} alt="Quote refresh button" className="h-5 w-5" />
       </button>
     </section>
   );
