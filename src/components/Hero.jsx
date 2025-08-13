@@ -35,33 +35,35 @@ export default function Hero() {
   ];
   return (
     <>
-      <section className="bg-red-500">
-        <div>
+      <section className="py-4">
+        <div className="mb-11">
           <div className="flex gap-4">
             <img src={isDayTime ? iconSun : iconMoon} alt="" />
-            <p className="text-xl">{greeting}</p>
+            <div className="text-xl flex">
+              <p>{greeting}</p>
+              <p>, IT'S CURRENTLY</p>
+            </div>
           </div>
-          <p className="text-7xl">
+          <p className="text-8xl font-bold md:text-[200px]">
             {currentTime}
-            <span className="text-lg">{abbrev}</span>
+            <span className="text-lg md:text-2xl">{abbrev}</span>
           </p>
-          <p>
+          <p className="text-lg font-semibold md:text-2xl">
             In {userCity} , {userCountry}
           </p>
         </div>
         <Button isMenuOpen={isMenuOpen} MenuToggle={MenuToggle} />
       </section>
       {isMenuOpen && (
-        <section className="bg-blue-900 py-10">
+        <section className="py-10 bg-neutral-400 -mx-4 px-4 text-black">
           <div className="flex flex-col gap-4">
-            {menuItems.map((item,index) => (
-            <div key={index} className="flex justify-between">
-              <p>{item.label}</p>
-              <p className="font-semibold">{item.value}</p>
-            </div>
-          ))}
+            {menuItems.map((item, index) => (
+              <div key={index} className="flex justify-between">
+                <p>{item.label}</p>
+                <p className="font-bold">{item.value}</p>
+              </div>
+            ))}
           </div>
-          
         </section>
       )}
     </>

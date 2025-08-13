@@ -35,13 +35,14 @@ export default function Quote() {
     return <p>{error}</p>;
   }
   return (
-    <section className="bg-green-400 flex items-start">
-      <div>
-        <p className="mb-3">"{quote.quote}"</p>
+    
+    <section className="flex items-start justify-between gap-4">
+      <div className="max-w-[85%] md:text-lg">
+        <p className="mb-3 ">"{quote.quote}"</p>
         <p className="font-semibold">{quote.author}</p>
       </div>
       <button onClick={fetchQuote}>
-        <img src={iconRefresh} alt="Quote refresh button" className="h-5 w-5" />
+        <img src={iconRefresh} alt="Quote refresh button" className="w-5 h-5" />
       </button>
     </section>
   );
