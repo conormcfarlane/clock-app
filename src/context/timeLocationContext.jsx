@@ -1,49 +1,47 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-// 1 Create the context
-const timeLocationContext = createContext();
-// 2 Create hook to use Context
+export const timeLocationContext = createContext();
+
+// Custom hook
 export const useTimeLocation = () => {
   const context = useContext(timeLocationContext);
   if (!context) {
-    throw new Error("useTimeLocation mjust be used within teh provider");
+    throw new Error("useTimeLocation must be used within TimeLocationProvider");
   }
   return context;
 };
-// 3 Create the Provider
+
 export const TimeLocationProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchTimeLocationData = async () => {
     try {
       setLoading(true);
       setError(null);
       const response = await fetch("http://worldtimeapi.org/api/ip");
       if (!response.ok) {
-        throw new Error(`HTTP no good ! status : ${response.status} `);
+        throw new Error("HTTP ERROR !", response.error);
       }
       const newData = await response.json();
       setData(newData);
     } catch (err) {
-      setError(err);
+      setError(err.message);
     } finally {
       setLoading(false);
-      setError(false);
     }
   };
-
   useEffect(() => {
-    fetchData();
+    fetchTimeLocationData();
   }, []);
+
   const value = {
     data,
     loading,
     error,
-    fetchData,
+    fetchTimeLocationData,
   };
-
   return (
     <timeLocationContext.Provider value={value}>
       {children}

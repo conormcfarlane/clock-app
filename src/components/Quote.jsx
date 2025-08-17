@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 import iconRefresh from "../assets/images/desktop/icon-refresh.svg";
+import { useMenu } from "../context/MenuContext";
 
 export default function Quote() {
+  const { isMenuOpen } = useMenu();
   const [quote, setQuote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchQuote = async () => {
-    setLoading(true);
-    setError(null);
     try {
+      setLoading(true);
+      setError(false);
       const response = await fetch("https://dummyjson.com/quotes/random");
       if (!response.ok) {
-        throw new Error(`HTTP error ! status: ${response.status}`);
+        throw new error("HTTP ERROR !", response.error);
       }
       const data = await response.json();
       setQuote(data);
     } catch (err) {
-      setError(err);
+      setError(err.message);
     } finally {
       setLoading(false);
-      setError(null);
     }
   };
 
@@ -29,20 +30,25 @@ export default function Quote() {
   }, []);
 
   if (loading) {
-    return <p>Loading Quote ....</p>;
+    return <blockquote> Loading Quote .....</blockquote>;
   }
-  if (error) {
-    return <p>{error}</p>;
-  }
+
   return (
-    
-    <section className="flex items-start justify-between gap-4">
-      <div className="max-w-[85%] md:text-lg">
-        <p className="mb-3 ">"{quote.quote}"</p>
-        <p className="font-semibold">{quote.author}</p>
+    <section
+      className={`bg-blue-400 justify-between items-start gap-4 ${
+        isMenuOpen ? "hidden" : "flex"
+      } `}
+    >
+      <div>
+        <blockquote>"{quote.quote}"</blockquote>
+        <p className="mt-4 font-bold">{quote.author}</p>
       </div>
-      <button onClick={fetchQuote}>
-        <img src={iconRefresh} alt="Quote refresh button" className="w-5 h-5" />
+      <button className="min-w-6 cursor-pointer" onClick={fetchQuote}>
+        <img
+          src={iconRefresh}
+          alt="quote refresh button"
+          className="object-cover"
+        />
       </button>
     </section>
   );
