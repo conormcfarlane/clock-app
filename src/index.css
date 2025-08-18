@@ -1,2 +1,25 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+.bg-day {
+  background-image: url("./assets//images/mobile/bg-image-daytime.jpg");
+}
+.bg-night {
+  background-image: url("./assets//images/mobile/bg-image-nighttime.jpg");
+}
+@media (min-width: 768px) {
+  .bg-day {
+    background-image: url("./assets//images/tablet/bg-image-daytime.jpg");
+  }
+  .bg-night {
+    background-image: url("./assets//images/tablet/bg-image-nighttime.jpg");
+  }
+}
+@media (min-width: 1024px) {
+  .bg-day {
+    background-image: url("./assets//images/desktop/bg-image-daytime.jpg");
+  }
+  .bg-night {
+    background-image: url("./assets//images/desktop/bg-image-nighttime.jpg");
+  }
+}

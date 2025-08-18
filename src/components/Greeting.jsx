@@ -8,9 +8,12 @@ export default function Greeting() {
   const isDay = isDaytime(currentHour);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 text-xl">
       <img src={`${isDay ? iconSun : iconMoon}`} alt="" />
-      <p>{greeting} </p>
+      <div className="flex">
+        <p>{greeting} </p>
+        <p className="hidden md:block">, ITS CURRENTLY</p>
+      </div>
     </div>
   );
 }

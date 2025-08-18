@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default function Hero() {
   return (
-    <section className="bg-green-900">
+    <section className="flex flex-col gap-10">
       <Greeting />
       <TimeDate />
       <Button />

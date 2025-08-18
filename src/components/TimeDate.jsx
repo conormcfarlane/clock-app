@@ -16,12 +16,15 @@ export default function TimeDate() {
   return (
     <div>
       <div className="flex gap-4">
-        <p>
+        <p className="text-8xl font-semibold">
           {hours}:{minutes}
         </p>
-        <span>{abbreviation}</span>
+        <span className="text-xl self-end">{abbreviation}</span>
       </div>
-      <p> IN {city}, {country}</p>
+      <p className="font-semibold text-sm">
+        {" "}
+        IN {city}, {country}
+      </p>
     </div>
   );
 }
