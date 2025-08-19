@@ -11,11 +11,11 @@ export default function MoreContent() {
   ];
 
   return (
-    <section className="py-12 flex flex-col gap-4 bg-gray-400 px-4">
+    <section className="py-12 flex flex-col gap-4 bg-gray-400 px-4 md:px-16 md:py-28 md:flex-row md:flex-wrap lg:px-41">
       {moreStats.map((content, index) => (
-        <div key={index} className="flex justify-between">
+        <div key={index} className="flex justify-between md:flex-col md:w-[calc(50%-0.5rem)]">
           <p>{content.title}</p>
-          <p className="font-semibold">{content.content}</p>
+          <p className="font-semibold md:text-[35px]">{content.content}</p>
         </div>
       ))}
     </section>

@@ -35,12 +35,10 @@ export default function Quote() {
 
   return (
     <section
-      className={`bg-blue-400 justify-between items-start gap-4 ${
-        isMenuOpen ? "hidden" : "flex"
-      } `}
+      className="flex justify-between items-start gap-4 lg:max-w-fit"
     >
       <div>
-        <blockquote>"{quote.quote}"</blockquote>
+        <blockquote className="text-lg">"{quote.quote}"</blockquote>
         <p className="mt-4 font-bold">{quote.author}</p>
       </div>
       <button className="min-w-6 cursor-pointer" onClick={fetchQuote}>

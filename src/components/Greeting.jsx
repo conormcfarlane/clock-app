@@ -8,7 +8,7 @@ export default function Greeting() {
   const isDay = isDaytime(currentHour);
 
   return (
-    <div className="flex gap-4 text-xl">
+    <div className="flex gap-4 text-xl font-semibold">
       <img src={`${isDay ? iconSun : iconMoon}`} alt="" />
       <div className="flex">
         <p>{greeting} </p>

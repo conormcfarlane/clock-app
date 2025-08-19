@@ -8,20 +8,20 @@ export default function TimeDate() {
   if (!data) return <div>No data available</div>;
   const dateTime = new Date(data.datetime);
   const hours = dateTime.getHours();
-  const minutes = dateTime.getMinutes();
+  const minutes = dateTime.getMinutes().toString().padStart(2, "0");
   const abbreviation = data.abbreviation;
   const city = data.timezone.split("/").pop().toUpperCase();
   const country = data.timezone.split("/").shift().toUpperCase();
 
   return (
-    <div>
-      <div className="flex gap-4">
-        <p className="text-8xl font-semibold">
+    <div className="flex flex-col gap-10">
+      <div className="flex gap-4 items-baseline">
+        <p className="text-8xl font-semibold md:text-[12.5rem] ">
           {hours}:{minutes}
         </p>
-        <span className="text-xl self-end">{abbreviation}</span>
+        <p className="text-xl md:text-4xl ">{abbreviation}</p>
       </div>
-      <p className="font-semibold text-sm">
+      <p className="font-bold text-sm md:text-2xl">
         {" "}
         IN {city}, {country}
       </p>

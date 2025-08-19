@@ -12,13 +12,19 @@ export default function Layout() {
     <div
       className={`flex flex-col justify-between relative z-10 min-h-screen bg-cover bg-no-repeat ${
         isDaytime ? "bg-day" : "bg-night"
-      } text-white ${isMenuOpen ? "" : ""}`}
+      } text-white`}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
-      <div className="px-4 py-8 relative z-10 flex flex-col justify-between h-screen">
-        <Quote />
-        <Hero />
+      <div
+        className={`px-4 py-8 relative z-10 flex flex-col justify-between ${
+          !isMenuOpen ? "h-screen" : "null"
+        } md:p-16 lg:px-41 `}
+      >
+        {!isMenuOpen && <Quote />}
+        <div className="mt-20">
+          <Hero />
+        </div>
       </div>
       <div className="relative z-10">{isMenuOpen && <MoreContent />}</div>
     </div>
