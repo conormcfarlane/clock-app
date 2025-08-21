@@ -1,5 +1,6 @@
 import React from "react";
 import { useTimeLocation } from "../context/timeLocationContext";
+import { isDaytime } from "../utils/timeHelper";
 
 export default function MoreContent() {
   const { data } = useTimeLocation();
@@ -11,9 +12,16 @@ export default function MoreContent() {
   ];
 
   return (
-    <section className="py-12 flex flex-col gap-4 bg-gray-400 px-4 md:px-16 md:py-28 md:flex-row md:flex-wrap lg:px-41">
+    <section
+      className={`py-12 flex flex-col gap-4 px-4 md:px-16 md:py-28 md:flex-row md:flex-wrap lg:px-41 ${
+        !isDaytime ? "bg-black text-white" : "bg-gray-400 text-black"
+      }`}
+    >
       {moreStats.map((content, index) => (
-        <div key={index} className="flex justify-between md:flex-col md:w-[calc(50%-0.5rem)]">
+        <div
+          key={index}
+          className="flex justify-between md:flex-col md:w-[calc(50%-0.5rem)]"
+        >
           <p>{content.title}</p>
           <p className="font-semibold md:text-[35px]">{content.content}</p>
         </div>

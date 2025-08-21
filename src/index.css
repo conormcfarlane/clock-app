@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-
+body {
+  font-family: "Inter";
+}
 .bg-day {
   background-image: url("./assets//images/mobile/bg-image-daytime.jpg");
 }

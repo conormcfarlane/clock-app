@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Quote from "./Quote";
-import Hero from "../components/Hero";
+import Hero from "./hero";
 
 import { useMenu } from "../context/MenuContext";
 import MoreContent from "./MoreContent";
